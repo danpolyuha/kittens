@@ -1,5 +1,6 @@
 require 'spec_helper'
 require_relative '../../apps/routes/kittens'
+require_relative '../../db/seeds'
 
 RSpec.describe KittensStore::Routes::Kittens do
   def app
