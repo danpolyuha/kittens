@@ -1,0 +1,22 @@
+services:
+
+  kittens:
+    image: danpolyuha/kittens
+    ports:
+      - 1234:1234
+    environment:
+      DATABASE_URL: postgresql://app:password@postgres/kittens_test
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: password
